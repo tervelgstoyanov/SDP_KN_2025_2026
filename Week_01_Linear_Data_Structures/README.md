@@ -112,7 +112,7 @@ True
 101
 ```
 
-**P7.** Given a chess board with size $n$, initial positions of the knight $(start_x, start_y)$, and wanted position $(end_x, end_y)$ print the minimal number of moves that the knight needs to go from the start to the end and -1 if this is not possible.  
+**P7.** Given a chess board with size $n$, initial positions of the knight $(start_x, start_y)$, and wanted position $(end_x, end_y)$ print the minimal number of moves that the knight needs to go from the start to the end and -1 if this is not possible. The indices start from $0$ to $n - 1$.  
 **Input:**
 ```
 5 1 1 3 2

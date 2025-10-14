@@ -8,7 +8,7 @@ const int dX[] = { 1, 1, -1, -1, 2, -2, 2, -2 },
 struct Position {
     int x, y;
 };
-struct Moves {
+struct Move {
     Position pos;
     unsigned int k;
 };
@@ -22,24 +22,24 @@ enum State {
 bool is_valid(unsigned int size, Position pos)
 {
     return 0 <= pos.x && pos.x < size
-        && 0<= pos.y && pos.y < size;
+        && 0 <= pos.y && pos.y < size;
 }
 int getMinMoves(
     std::size_t size,
     Position start,
     Position end
 ) {
-    std::queue<Moves> moves;
+    std::queue<Move> moves;
     std::vector<std::vector<State>> visited(size, std::vector<State>(size, UNVISITED));
     moves.push({start, 0});
     
     while (!moves.empty())
     {
-        Moves current = moves.front();
+        Move current = moves.front();
         moves.pop();
 
-        if (current.pos.x == end.x && current.pos.y == end.y)
-            return current.k;
+        // if (current.pos.x == end.x && current.pos.y == end.y)
+        //     return current.k;
 
         visited[current.pos.x][current.pos.y] = DONE;
             
@@ -52,6 +52,9 @@ int getMinMoves(
 
             if (is_valid(size, next_pos) && visited[next_pos.x][next_pos.y] == UNVISITED)
             {
+                if (next_pos.x == end.x && next_pos.y == end.y)
+                    return current.k + 1;
+                
                 moves.push({next_pos, current.k + 1});
                 visited[next_pos.x][next_pos.y] = IN_QUEUE;
             }
