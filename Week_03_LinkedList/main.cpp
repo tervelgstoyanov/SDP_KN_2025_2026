@@ -67,29 +67,56 @@ void reverse(Node<T>*& head)
     head->next = prev;
 }
 
+template <typename T>
+void appendMirroredCopy(Node<T> *head)
+{
+    if (head == nullptr)
+        return;
+    
+    Node<T> *mirrored_head = nullptr;
+
+    while (head->next != nullptr)
+    {
+        mirrored_head = new Node(head->value, mirrored_head);
+        head = head->next;
+    }
+    head->next = new Node(head->value, mirrored_head);
+}
+
+template <typename T>
+Node<T>* getMiddle(Node<T>* head)
+{
+    if (head == nullptr || head->next == nullptr) return head;
+
+    Node<T>* fast_ptr = head;
+    while (fast_ptr->next != nullptr && fast_ptr->next->next != nullptr)
+    {
+        head = head->next;
+        fast_ptr = fast_ptr->next->next;
+    }
+    return head;
+}
+
 int main()
 {
     const int x = 5, y = 6, z = 7;
     Node<int> *head = new Node<int>(x);
-    Node<int> *el2 = new Node<int>(y);
-    Node<int> *el3 = new Node<int>(z);
+    Node<int> *it = head;
+    for (int i = 0; i < 4; ++i)
+    {
+        it->next = new Node<int>(i);
+        it = it->next;
+    }
 
-    head->next = el2;
-    el2->next = el3;
-
-    print<int>(head); // 5 6 7 nullptr
-
-    reverse(head);
     print<int>(head);
-    // print<int>(el3); // 7 nullptr
-    
-    const int a = 1, b = 2, c = 3;
-    Node<int> *head2 = new Node<int>(a, new Node<int>(b, new Node<int>(c)));
+    std::cout << getMiddle(head)->value << std::endl;
+    // const int a = 1, b = 2, c = 3;
+    // Node<int> *head2 = new Node<int>(a, new Node<int>(b, new Node<int>(c)));
 
-    print(head2->next); // 2 3 nullptr
+    // print(head2->next); // 2 3 nullptr
 
     deallocate<int>(head);
-    deallocate<int>(head2);
+    //deallocate<int>(head2);
 
     return 0;
 }
