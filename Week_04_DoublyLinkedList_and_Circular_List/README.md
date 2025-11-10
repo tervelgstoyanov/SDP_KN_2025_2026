@@ -21,15 +21,20 @@ There are more exotic types of linked lists, e.g. *doubly linked lists* and *cir
 
 **P3.** Problems from last week but for DLL.
 
-**P4.** Flatten a multilevel doubly linked list - each node could have a child that is a DLL so we need to flatten everything following the example:
-1 <-> 2 <-> 3 <-> 4
-      |     |
-      |     10
-      |
-      5 <-> 6 <-> 7
-            |
-            8 <-> 9
-Result: 1 <-> 2 <-> 5 <-> 6 <-> 8 <-> 9 <-> 7 <-> 3 <-> 10 <-> 4
+**P4.** Flatten a multilevel doubly linked list - each node could have a child that is a DLL so we need to flatten everything following the example: 
+``` 
+1 <-> 2 <-> 3 <-> 4  
+      |     |  
+      |     10  
+      |  
+      5 <-> 6 <-> 7  
+            |  
+            8 <-> 9  
+```
+Result:
+```
+1 <-> 2 <-> 5 <-> 6 <-> 8 <-> 9 <-> 7 <-> 3 <-> 10 <-> 4
+```
 
 **P5.** Write a function that aggregates the elements of a circular list.
 ```cpp

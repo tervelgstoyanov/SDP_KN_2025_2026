@@ -62,7 +62,7 @@ private:
     void copy(const SLL& other);
     void deallocate(Node*& head);
 };
-
+// for (SLL<int>::Iterator it = sll.begin(); it != sll.end(); ++it)
 template <class T>
 class SLL<T>::Iterator {
     friend class SLL<T>;
@@ -94,7 +94,7 @@ public:
     }
     bool operator == (const Iterator& other) const
     {
-        return ptr == other.ptr;
+        return ptr == other.ptr && owner != other->owner;
     }
     bool operator != (const Iterator& other) const
     {
